@@ -1,0 +1,40 @@
+{
+  "name": "koa-backend-server",
+  "version": "1.0.0",
+  "description": "Clicktracking-Backend-Server",
+  "main": "src/index.js",
+  "dependencies": {
+    "co-body": "^6.1.0",
+    "dotenv": "^8.2.0",
+    "koa": "^2.13.1",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^10.0.0",
+    "koa2-cors": "^2.0.6",
+    "redis": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-node-externals": "^2.5.0"
+  },
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "nodemon --exec babel-node src/index.js",
+    "prod": "node dist/koa-backend-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "koa",
+    "clicktracking"
+  ],
+  "author": "John Senekal",
+  "license": "ISC"
+}
