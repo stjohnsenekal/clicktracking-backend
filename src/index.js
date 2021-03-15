@@ -6,44 +6,36 @@ import mount from 'koa-mount';
 import cors from 'koa2-cors';
 import parse from 'co-body';
 
-
 console.log("KOA BACKEND SERVER --begin--");
-
-// console.log("************");
-// console.log ( developers );
 
 const app = new Koa();
 const router = new Router();
 
-console.log("*******router*****");
-console.log ( router );
-
 const devProject = [ {
-  name: 'Andrei-Marius Hutupas-Antoniu',
+  name: 'Andrei-Marius',
   image: 'https://i.imgur.com/1QSViF0.jpg',
   project: 'Project X',
-  info: 'A small e-commercse site that sells mostly daily deals.',
+  info: 'A small e-commerce site that sells mostly daily deals and special offers.',
   score: 0
 },
 {
-  name: 'Martynas Raiselas',
+  name: 'Martynas',
   image: 'https://i.imgur.com/uuAMIzn.jpg',
   project: 'Project Y',
-  info: 'Larger e-commerse provider that has customised shopping for clients.',
+  info: 'Larger e-commerce provider that has personalised shopping for clients.',
   score: 0
 },
 {
-  name: 'Paul Kirkass',
+  name: 'Paul',
   image: 'https://i.imgur.com/2qnghRD.jpg',
   project: 'Project Z',
-  info: 'Large scale data aggregation from external sources.',
+  info: 'Large scale data aggregation from external sources for custom offerings.',
   score: 0
 },
 
 ];
 
-router.get('/developers', (ctx, next) => {
-  // ctx.router available   
+router.get('/developers', (ctx, next) => {  
   ctx.body = devProject;
 });
 
@@ -53,35 +45,12 @@ const update = (developerName, operation) => {
   devProject.sort((a, b) => b.score - a.score); 
 }
 
-
-//const uploadMiddleware = multer().fields([{ name: 'file', maxCount: 1 }]);
-
-const loggerMiddleWare = () => {
-  console.log("post has been received");
-}
-
 router.post('/update', async (ctx) => {
-  //const id = getUserId(ctx);
-  console.log("here poes");
-  let {name, action} = await parse(ctx); //destructuring
-  console.log(name);
-  console.log(action);
+  const { name, action } = await parse(ctx); 
+  console.log(`dev ${name} has a ${action} logged against their project.`)
   update(name, action);
-
-
-  // const { name, action } = ctx.request.body;
-  // if (!name) {
-  //   ctx.body = 'Missing name';
-  //   return;
-  // }
-  
-  // console.log(name);
-  // console.log(action);
-
-  //saveImage(id, name, ctx.files.file[0].buffer);
-  
- // ctx.redirect('/');
 }
+
 );
 
 app
